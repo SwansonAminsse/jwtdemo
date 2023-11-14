@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.UserMapper">
+  <resultMap id="BaseResultMap" type="com.example.demo.entity.User">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="roleIds" jdbcType="VARCHAR" property="roleIds" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, name, password, roleIds
+  </sql>
+
+  <select id="getUserByLogin" parameterType="java.lang.String"
+          resultType="com.example.demo.entity.User">
+        select * from user where name = #{username}
+    </select>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.demo.entity.User">
+    UPDATE user
+    <set>
+      <if test="name != null">name = #{name},</if>
+      <if test="password != null">password = #{password},</if>
+      <if test="roleIds != null">roleIds = #{roleIds},</if>
+    </set>
+    WHERE id = #{id}
+  </update>
+</mapper>
