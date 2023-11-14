@@ -1,6 +1,7 @@
 package com.example.demo.controller;
 
 import com.example.demo.Jwt.JwtRequired;
+
 import com.example.demo.Jwt.JwtUtil;
 import com.example.demo.common.ApiResult;
 import com.example.demo.dto.UserDto;
@@ -10,7 +11,6 @@ import io.swagger.annotations.ApiImplicitParams;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import static com.example.demo.Jwt.JwtUtil.ACCOUNT;
 
 @RestController
 @RequestMapping("adminLogin")
