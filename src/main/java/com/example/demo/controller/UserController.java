@@ -9,6 +9,7 @@ import com.example.demo.service.UserService;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.web.bind.annotation.*;
 
 
@@ -33,9 +34,9 @@ public class UserController {
     })
     @JwtRequired
     @PostMapping("change")
-    public ApiResult change(@RequestParam String username,@RequestParam String oldPassword, @RequestParam String newPassword){
-
-        return userService.change(username,oldPassword,newPassword);
+    public ApiResult change(@RequestHeader(name = HttpHeaders.AUTHORIZATION) String token, @RequestParam String oldPassword, @RequestParam String newPassword){
+        String username = JwtUtil.getClaim(token, JwtUtil.ACCOUNT);
+                return userService.change(username,oldPassword,newPassword);
     }
 }
 

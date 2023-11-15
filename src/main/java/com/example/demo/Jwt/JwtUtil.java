@@ -4,6 +4,7 @@ import com.auth0.jwt.JWT;
 import com.auth0.jwt.JWTVerifier;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTDecodeException;
+import com.auth0.jwt.exceptions.JWTVerificationException;
 import com.auth0.jwt.interfaces.DecodedJWT;
 
 import java.util.Date;
@@ -14,7 +15,7 @@ public class JwtUtil {
 
     public static final String ACCOUNT = "username";
     public final static String CURRENT_TIME_MILLIS = "currentTimeMillis";
-    public static final long EXPIRE_TIME = 2 * 60 * 60 * 1000L;
+    public static final long EXPIRE_TIME = 2*60*60*1000L;
 
     public static final String SECRET_KEY = "shirokey";
 
@@ -39,6 +40,7 @@ public class JwtUtil {
         String secret = getClaim(token, ACCOUNT) + SECRET_KEY;
         Algorithm algorithm = Algorithm.HMAC256(secret);
         JWTVerifier verifier = JWT.require(algorithm)
+                .acceptExpiresAt(EXPIRE_TIME )
                 .build();
         verifier.verify(token);
         return true;
