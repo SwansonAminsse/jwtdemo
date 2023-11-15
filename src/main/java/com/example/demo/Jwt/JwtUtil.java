@@ -17,7 +17,7 @@ public class JwtUtil {
     public final static String CURRENT_TIME_MILLIS = "currentTimeMillis";
     public static final long EXPIRE_TIME = 2*60*60*1000L;
 
-    public static final String SECRET_KEY = "shirokey";
+    public static final String SECRET_KEY = "key";
 
     private static final ThreadLocal<String> tokenThreadLocal = new InheritableThreadLocal<>();
     public static String sign(String account, String currentTimeMillis) {
