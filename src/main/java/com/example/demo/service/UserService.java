@@ -29,7 +29,6 @@ public class UserService  {
         } else if (!userInfo.getPassword().equals(uInfo.getPassword())) {
             throw new BusinessException(CommonResult.PASSWORD_ERROR);
         }
-        System.out.println("Thread ID: " + Thread.currentThread().getId());
         String token = JwtUtil.sign(userInfo.getName(),String.valueOf(System.currentTimeMillis()));
         return ApiResult.success("userInfo", token);
     }

@@ -9,8 +9,8 @@ public enum CommonResult implements ResultStatus {
     ENTITY_NOT_EXIST(1004, "实体类不存在"),
     ;
 
-    private int code;
-    private String message;
+    private final int code;
+    private final String message;
 
     CommonResult(int code, String message) {
         this.code = code;
