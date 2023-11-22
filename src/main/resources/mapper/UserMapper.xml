@@ -3,24 +3,24 @@
 <mapper namespace="com.example.demo.mapper.UserMapper">
   <resultMap id="BaseResultMap" type="com.example.demo.entity.User">
     <id column="id" jdbcType="BIGINT" property="id" />
-    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="user_name" jdbcType="VARCHAR" property="user_name" />
     <result column="password" jdbcType="VARCHAR" property="password" />
-    <result column="roleIds" jdbcType="VARCHAR" property="roleIds" />
+    <result column="permissions" jdbcType="VARCHAR" property="permissions" />
   </resultMap>
   <sql id="Base_Column_List">
-    id, name, password, roleIds
+    id, user_name, password, permissions
   </sql>
 
   <select id="getUserByLogin" parameterType="java.lang.String"
           resultType="com.example.demo.entity.User">
-        select * from user where name = #{username}
+        select * from base_personnel where user_name = #{username}
     </select>
   <update id="updateByPrimaryKeySelective" parameterType="com.example.demo.entity.User">
-    UPDATE user
+    UPDATE base_personnel
     <set>
-      <if test="name != null">name = #{name},</if>
+      <if test="user_name != null">user_name = #{user_name},</if>
       <if test="password != null">password = #{password},</if>
-      <if test="roleIds != null">roleIds = #{roleIds},</if>
+      <if test="permissions != null">permissions = #{permissions},</if>
     </set>
     WHERE id = #{id}
   </update>

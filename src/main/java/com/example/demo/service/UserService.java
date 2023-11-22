@@ -23,17 +23,17 @@ public class UserService  {
 
 
     public ApiResult login(UserDto userInfo) {
-        User uInfo = userMapper.getUserByLogin(userInfo.getName());
+        User uInfo = userMapper.getUserByLogin(userInfo.getUser_name());
         if (null == uInfo) {
             throw new BusinessException(CommonResult.USERNAME_ERROR);
         } else if (!userInfo.getPassword().equals(uInfo.getPassword())) {
             throw new BusinessException(CommonResult.PASSWORD_ERROR);
         }
-        String token = JwtUtil.sign(userInfo.getName(),String.valueOf(System.currentTimeMillis()));
+        String token = JwtUtil.sign(userInfo.getUser_name(),String.valueOf(System.currentTimeMillis()));
         return ApiResult.success("userInfo", token);
     }
-    public ApiResult change(String name,String oldPassword, String newPassword) {
-        User uInfo = userMapper.getUserByLogin(name);
+    public ApiResult change(String user_name,String oldPassword, String newPassword) {
+        User uInfo = userMapper.getUserByLogin(user_name);
         if (null == uInfo) {
             throw new BusinessException(CommonResult.USERNAME_ERROR);
         } else if (!oldPassword.equals(uInfo.getPassword())) {

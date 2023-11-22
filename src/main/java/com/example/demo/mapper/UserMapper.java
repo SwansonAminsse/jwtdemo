@@ -7,7 +7,7 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface UserMapper extends BaseMapper<User> {
 
-    User getUserByLogin(String username);
+    User getUserByLogin(String user_name);
 
     void updateByPrimaryKeySelective(User uInfo);
 }

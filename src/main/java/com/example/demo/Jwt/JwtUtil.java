@@ -13,10 +13,11 @@ import java.util.concurrent.ConcurrentHashMap;
 public class JwtUtil {
 
 
-    public static final String ACCOUNT = "username";
+    public static final String ACCOUNT = "user_name";
     public final static String CURRENT_TIME_MILLIS = "currentTimeMillis";
     public static final long EXPIRE_TIME = 2*60*60*1000L;
 
+    public static final long REFRESH_TOKEN_EXPIRE_TIME = 7 * 24 * 60 * 60 * 1000L;
     public static final String SECRET_KEY = "key";
 
     private static final ThreadLocal<String> tokenThreadLocal = new InheritableThreadLocal<>();

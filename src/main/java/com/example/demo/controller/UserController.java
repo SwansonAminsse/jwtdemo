@@ -35,8 +35,8 @@ public class UserController {
     @JwtRequired
     @PostMapping("change")
     public ApiResult change(@RequestHeader(name = HttpHeaders.AUTHORIZATION) String token, @RequestParam String oldPassword, @RequestParam String newPassword){
-        String username = JwtUtil.getClaim(token, JwtUtil.ACCOUNT);
-                return userService.change(username,oldPassword,newPassword);
+        String user_name = JwtUtil.getClaim(token, JwtUtil.ACCOUNT);
+                return userService.change(user_name,oldPassword,newPassword);
     }
 }
 
